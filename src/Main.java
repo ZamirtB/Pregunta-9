@@ -11,11 +11,11 @@ import java.lang.String;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Propietario> registroPropietario = new ArrayList<Propietario>();
-        ArrayList<Inquilino> registroInquilino = new ArrayList<>();
-        ArrayList<Inmueble> registroInmueble = new ArrayList<>();
-        ArrayList<Contrato> registroContrato = new ArrayList<>();
-        Scanner seleccion = new Scanner(System.in);
+        ArrayList<Propietario> regPropietario = new ArrayList<Propietario>();
+        ArrayList<Inquilino> regInquilino = new ArrayList<>();
+        ArrayList<Inmueble> regInmueble = new ArrayList<>();
+        ArrayList<Contrato> regContrato = new ArrayList<>();
+        Scanner seleccionar = new Scanner(System.in);
         String opcion;
         int i = 1;
 
@@ -27,71 +27,71 @@ public class Main {
             System.out.println("4 Registro del contrato");
             System.out.println("5 Salir del registro");
 
-            opcion = seleccion.next();
+            opcion = seleccionar.next();
 
             switch (opcion) {
                 case "1":
                     System.out.println("Nombre del propietario");
-                    String Nombre = seleccion.next();
+                    String Nombre = seleccionar.next();
                     System.out.println("Tipo de inmueble");
-                    String Inmueble = seleccion.next();
+                    String Inmueble = seleccionar.next();
                     System.out.println("Tipo de contrato");
-                    int Tiempo = seleccion.nextInt();
-                    Propietario nuevoPropietario = new Propietario(Nombre, Inmueble, Tiempo);
-                    registroPropietario.add(nuevoPropietario);
-                    for (int j = 0; j < registroPropietario.size(); j++)
+                    int Tiempo = seleccionar.nextInt();
+                    Propietario nuePropietario = new Propietario(Nombre, Inmueble, Tiempo);
+                    regPropietario.add(nuePropietario);
+                    for (int j = 0; j < regPropietario.size(); j++)
                         System.out.println(
                                 "Registro exitoso\n los datos registrados son" +
-                                        "\n Nombre: " + registroPropietario.get(j).getNombre() +
-                                        "\n Tipo de inmueble: " + registroPropietario.get(j).getTipo() +
-                                        "\n Duracion del contrato (meses): " + registroPropietario.get(j).getTiempo());
+                                        "\n Nombre: " + regPropietario.get(j).getNombre() +
+                                        "\n Tipo de inmueble: " + regPropietario.get(j).getTipo() +
+                                        "\n Duracion del contrato (meses): " + regPropietario.get(j).getTiempo());
                     opcion = "0";
                     break;
 
                 case "2":
                     System.out.println("Tipo de inmueble");
-                    String tipoInmueble = seleccion.next();
+                    String tipoInmueble = seleccionar.next();
                     System.out.println("¿Desea arrendar o vender?");
-                    String tipoContrato = seleccion.next();
-                    Inmueble nuevoInmueble = new Inmueble(tipoInmueble, tipoContrato);
-                    registroInmueble.add(nuevoInmueble);
+                    String tipoContrato = seleccionar.next();
+                    Inmueble nueInmueble = new Inmueble(tipoInmueble, tipoContrato);
+                    regInmueble.add(nueInmueble);
                     opcion = "0";
                     break;
 
                 case "3":
-                    //System.out.println("Nombre");
-                    String NombreInquilino = seleccion.next();
-                    Inquilino nuevoInquilino = new Inquilino(NombreInquilino);
-                    registroInquilino.add(nuevoInquilino);
-                    for (int j = 0; j < registroPropietario.size(); j++)
+                    System.out.println("Nombre");
+                    String NomInquilino = seleccionar.next();
+                    Inquilino nueInquilino = new Inquilino(NomInquilino);
+                    regInquilino.add(nueInquilino);
+                    for (int j = 0; j < regPropietario.size(); j++)
                         JOptionPane.showMessageDialog(
                                 null,
                                 "Registro exitoso\n los datos registrados son" +
-                                        "\n Nombre: " + registroPropietario.get(j).getNombre());
+                                        "\n Nombre: " + regPropietario.get(j).getNombre());
                     opcion = "0";
                     break;
 
                 case "4":
+                    System.out.println("Nombre del Arrensatario");
+                    String nomInqContrato = seleccionar.next();
                     System.out.println("Nombre del Inquilino");
-                    String nombreInquilinoContrato = seleccion.next();
-                    System.out.println("Nombre del Arrendatario");
-                    String nombreArrendadorContrato = seleccion.next();
+                    String nombreArrendadorContrato = seleccionar.next();
                     System.out.println("periodo del contrato");
-                    int tiempoArrendamientoContrato = seleccion.nextInt();
-                    Contrato nuevoContrato = new Contrato(nombreInquilinoContrato, nombreInquilinoContrato, tiempoArrendamientoContrato);
-                    registroContrato.add(nuevoContrato);
+                    int tiemArrenContrato = seleccionar.nextInt();
+                    Contrato nueContrato = new Contrato(nomInqContrato, nomInqContrato, tiemArrenContrato);
+                    regContrato.add(nueContrato);
 
                     try {
-                        for (int k = 0; k < registroPropietario.size(); k++){
-                            for (int z= 0; z< registroInquilino.size(); z++ ){
-                                String str1 = registroPropietario.get(k).getNombre();
-                                String str2 = registroInquilino.get(z).getNombreInquilino();
+                        for (int k = 0; k < regPropietario.size(); k++){
+                            for (int z= 0; z< regInquilino.size(); z++ ){
+                                String str1 = regPropietario.get(k).getNombre();
+                                String str2 = regInquilino.get(z).getNombreInquilino();
 
-                                if (str1.contains(registroPropietario.get(k).getNombre()) && str2.contains(registroInquilino.get(z).getNombreInquilino())) {
-                                    JOptionPane.showMessageDialog(null, "El propietario: " + str1 +  " esta en la base de datos");
-                                    JOptionPane.showMessageDialog(null, "El propietario: " + str2 +  " esta en la base de datos,  Su contrato ha sido un exito");
+                                if (str1.contains(regPropietario.get(k).getNombre()) && str2.contains(regInquilino.get(z).getNombreInquilino())) {
+                                    JOptionPane.showMessageDialog(null, "Propietario: " + str1 +  " resguistrado en la base de datos");
+                                    JOptionPane.showMessageDialog(null, "Propietario: " + str2 +  " registrado  en la base de datos,  Su contrato ha sido un exito");
                                 } else {
-                                    System.out.println("La palabra clave: ejemplo: no existe en la cadena");
+                                    System.out.println("No existe en la cadena");
                                 }
                             }
                         }
